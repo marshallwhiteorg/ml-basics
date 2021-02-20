@@ -44,8 +44,10 @@ def load_data_wrapper() -> (np.ndarray, np.ndarray, np.ndarray):
     Note the difference in format between the lists. training_data
     encodes the digit as a 10d vector with a 1.0 in the digit's position,
     and validation_data and test_data encode the digit as an integer.
-    Additionally, in all three cases x has shape (784, 1), not (784,).
-    Apparently this is convenient for use.
+
+    Additionally, in all three cases x has shape (784, 1), not (784,),
+    as it is in load_data.
+    Apparently this is convenient.
     '''
     tr_d, va_d, te_d = _load_data()
     training_inputs = [np.reshape(x, (784, 1)) for x in tr_d[0]]

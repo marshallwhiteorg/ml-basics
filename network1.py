@@ -16,7 +16,7 @@ def sigmoid_prime(z: npt.ArrayLike):
     return sigmoid(z)*(1-sigmoid(z))
 
 
-class Network:
+class Network1:
     num_layers: int
     sizes: [int]
     biases: np.ndarray
@@ -51,21 +51,24 @@ class Network:
         return a
 
     
-    def SGD(self, training_data: npt.ArrayLike, n_epochs: int, lr: int,
-            mini_batch_size: int, validation_data: npt.ArrayLike = None):
+    def SGD(self, training_data: [], n_epochs: int,
+        mini_batch_size: int, lr: float,
+        validation_data: [] = None):
         ''' Performs stochastic gradient descent to train the network.
 
         alpha: learning rate
-        training_data: array of (x, y) pairs of training data
+        training_data: list of (x, y) pairs
+        validation_data: list of (x, y) pairs
+
+        The y values in training_data and validation_data do not have the same
+        shape. See mnist_loader.load_data_wrapper for details.
 
         If validation_data is not None, then we evaluate the network on this
         data after each epoch. This can slow down the algorithm a lot.
         '''
-        training_data = np.asarray(training_data)
-        if validation_data:
-            validation_data = np.asarray(validation_data)
-            n_validation = len(validation_data)
         n = len(training_data)
+        if validation_data:
+            n_validation = len(validation_data)
 
         for e_idx in range(n_epochs):
             self._rng.shuffle(training_data)
