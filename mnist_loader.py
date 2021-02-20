@@ -4,7 +4,7 @@ import pickle
 import gzip
 import numpy as np
 
-def _load_data() -> (np.ndarray, np.ndarray, np.ndarray):
+def load_data() -> (np.ndarray, np.ndarray, np.ndarray):
     ''' Returns the MNIST data as a tuple containing the training data,
     the validation data, and the test data.
 
@@ -49,7 +49,7 @@ def load_data_wrapper() -> (np.ndarray, np.ndarray, np.ndarray):
     as it is in load_data.
     Apparently this is convenient.
     '''
-    tr_d, va_d, te_d = _load_data()
+    tr_d, va_d, te_d = load_data()
     training_inputs = [np.reshape(x, (784, 1)) for x in tr_d[0]]
     training_results = [_vectorized_result(y) for y in tr_d[1]]
     training_data = list(zip(training_inputs, training_results))
